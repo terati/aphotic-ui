@@ -1,8 +1,10 @@
 ## Scroll Locking
 
-| Category | Type | Title |
-| --- | --- | --- | --- |
-| Hooks | General | Hook to disable/enable scrolling |
+
+
+| Category 	| Type    	| Title                            	|
+|----------	|---------	|----------------------------------	|
+| Hooks    	| General 	| Hook to disable/enable scrolling 	|
 
 Example Usage
 
