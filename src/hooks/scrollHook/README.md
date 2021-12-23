@@ -1,9 +1,8 @@
 ## Scroll Locking
----
-category: Hooks
-type: General
-title: Hook to Disable/Enable Scrolling
----
+
+| Category | Type | Title |
+| --- | --- | --- | --- |
+| Hooks | General | Hook to disable/enable scrolling |
 
 Example Usage
 
