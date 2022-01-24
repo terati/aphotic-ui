@@ -4,16 +4,36 @@ const ButtonTypes = ['default', 'primary', 'dashed', 'text'];
 export type ButtonType = typeof ButtonTypes[number];
 
 export interface ButtonProps {
-  label: string;
+  /**
+   * Button content label
+   */
+  label?: string;
+  /**
+   * Button comes in 4 styles that can be selected: default, primary, dashed, or text
+   */
   type?: ButtonType;
+  /**
+   * An optional button image can be provided
+   */
   icon?: React.ReactNode;
-  size?: Number;
+  /** 
+   * Button provided sizes in the following 3 size.
+   */
+  size?: 'small' | 'medium' | 'large';
+  /**
+   * Optional class label
+   */
   className?: string;
+  /**
+   * determines if the button takes the entirety of parent object
+   */
   block?: boolean;
+  /**
+   * Button can enter loading state
+   */
   loading?: boolean;
   children?: React.ReactNode;
 }
-
 
 
 const Button: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, ref) => {
