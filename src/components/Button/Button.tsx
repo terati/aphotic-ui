@@ -1,4 +1,7 @@
 import * as React from 'react';
+import styled from '@emotion/styled';
+
+import {ButtonHTMLAttributes} from 'react'
 
 const ButtonTypes = ['default', 'primary', 'dashed', 'text'];
 export type ButtonType = typeof ButtonTypes[number];
@@ -32,15 +35,47 @@ export interface ButtonProps {
    * Button can enter loading state
    */
   loading?: boolean;
+  /**
+   * Inherited clicking
+   */
+  onClick?: React.MouseEventHandler<HTMLElement>;
+  /**
+   * Option to disable
+   */
+  disabled?: boolean;
+  
   children?: React.ReactNode;
+
+  styles?: {};
 }
 
+function isReactFragment(node: React.ReactNode) {
+  return React.isValidElement(node) && node.type == React.Fragment;
+}
 
-const Button: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, ref) => {
+const RootButton = styled('button') <ButtonHTMLAttributes<HTMLButtonElement>> (
+  {
+    backgroundColor: 'black',
+    // background: 'inherit',
+    border: 1,
+    borderRadius: '10px',
+    color: 'white',
+    cursor: 'pointer',
+    fontFamily: 'inherit',
+    fontSize: 'inherit',
+    margin: 0,
+    outline: 1,
+    padding: 10,
+    textAlign: 'inherit'
+  }
+)
+
+const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, ref) => {
   const {
     type,
     icon,
-    size,
+    label,
+    size = 'medium',
     className,
     block = false,
     loading = false,
@@ -60,16 +95,18 @@ const Button: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, ref
   }
 
   const buttonNode = (
-    <button
-        className={classes}
+    <RootButton
+        // className={classes}
         onClick={handleClick}
       > 
-      {props.label} 
+      {label} 
         
-      </button>
+    </RootButton>
   )
 
   return buttonNode;
 }
+
+const Button = React.forwardRef<unknown, ButtonProps>(InternalButton);
 
 export default Button
