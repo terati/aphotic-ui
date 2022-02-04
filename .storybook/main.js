@@ -6,7 +6,8 @@ module.exports = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@react-theming/storybook-addon"
+    "@react-theming/storybook-addon",
+    '@storybook/preset-scss',
   ],
   "framework": "@storybook/react",
   "core": {
@@ -20,5 +21,16 @@ module.exports = {
       shouldExtractLiteralValuesFromEnum: true,
       propFilter: (prop) => (prop.parent ? !/node_modules/.test(prop.parent.fileName) : true),
     },
+  },
+
+  webpackFinal: async (config, { configType }) => {
+    config.module.rules.push({
+      test: /\.scss$/,
+      sideEffects: true,
+      use: ['style-loader', 'css-loader', 'sass-loader'],
+      // include: path.resolve(__dirname, '../'),
+    });
+    
+    return config;
   },
 }

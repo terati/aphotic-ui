@@ -19,7 +19,7 @@ const Template: ComponentStory<typeof ThreeDotsLoader> = (args) => <ThreeDotsLoa
 export const ThreeDots = Template.bind({});
 ThreeDots.args = {
   type: "blink",
-  fill: 'red',
+  fill: "black",
   speed: 20,
 };
 

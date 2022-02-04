@@ -1,7 +1,8 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
+import classNames from 'classnames';
 
-import {ButtonHTMLAttributes} from 'react'
+import {ButtonHTMLAttributes} from 'react';
 
 const ButtonTypes = ['default', 'primary', 'dashed', 'text'];
 export type ButtonType = typeof ButtonTypes[number];
@@ -53,20 +54,21 @@ function isReactFragment(node: React.ReactNode) {
   return React.isValidElement(node) && node.type == React.Fragment;
 }
 
+
 const RootButton = styled('button') <ButtonHTMLAttributes<HTMLButtonElement>> (
   {
-    backgroundColor: 'black',
-    // background: 'inherit',
-    border: 1,
-    borderRadius: '10px',
-    color: 'white',
-    cursor: 'pointer',
-    fontFamily: 'inherit',
-    fontSize: 'inherit',
-    margin: 0,
-    outline: 1,
-    padding: 10,
-    textAlign: 'inherit'
+    // backgroundColor: 'black',
+    // // background: 'inherit',
+    // border: 1,
+    // borderRadius: '10px',
+    // color: 'white',
+    // cursor: 'pointer',
+    // fontFamily: 'inherit',
+    // fontSize: 'inherit',
+    // margin: 0,
+    // outline: 1,
+    // padding: 10,
+    // textAlign: 'inherit'
   }
 )
 
@@ -94,10 +96,15 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
     }
   }
 
+  const generalClasses = classNames(className, {
+    [`bt-btn`]: true
+  });
+
   const buttonNode = (
     <RootButton
         // className={classes}
         onClick={handleClick}
+        className={generalClasses}
       > 
       {label} 
         

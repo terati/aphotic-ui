@@ -15,7 +15,7 @@ const ThreeDotsLoader = ({
 
   if (type == "blink"){
     return (
-      <svg width="120" height="30" xmlns="http://www.w3.org/2000/svg" fill="#000">
+      <svg width="120" height="30" xmlns="http://www.w3.org/2000/svg" fill={fill}>
         <circle cx="15" cy="15" r="15">
           <animate attributeName="r"
                     begin="0s" dur="2s"
@@ -39,9 +39,9 @@ const ThreeDotsLoader = ({
         </circle>
       </svg>
     )
-  } else {
+  } else if (type == "linear"){
     return (
-      <svg width="120" height="30" xmlns="http://www.w3.org/2000/svg" fill="#000">
+      <svg width="120" height="30" xmlns="http://www.w3.org/2000/svg" fill={fill}>
         <circle cx="15" cy="15" r="15">
           <animate attributeName="fill-opacity" from="1" to="1"
                     begin="0s" dur="0.8s"
