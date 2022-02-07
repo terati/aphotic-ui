@@ -1,18 +1,30 @@
+@use '../../config' as *;
+@use '../theme' as *;
 
-
-.bt-btn {
-  background-color: rgb(146, 146, 146);
-  color: black;
+.#{$prefix}-btn {
+  background-color: var(--primary-main);
+  color: var(--primary-contrastText);
   border: none;
   padding: 15px 32px;
   text-align: center;
   display: inline-block;
   font-size: 16px;
   transition-duration: 0.1s;
+
+  position: relative;
+  display: inline-flex;
+  max-width: rem(320px);
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
+
+  &:hover {
+    background-color: var(--primary-light);
+  }
+
 }
 
-.bt-btn:hover {
-  background-color: rgb(49, 49, 49);
-  color: white;
-}
+
+
 

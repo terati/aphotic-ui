@@ -2,7 +2,8 @@ import * as React from 'react';
 import styled from '@emotion/styled';
 import classNames from 'classnames';
 
-import {ButtonHTMLAttributes} from 'react';
+import { ButtonHTMLAttributes } from 'react';
+import { prefix } from '../../config';
 
 const ButtonTypes = ['default', 'primary', 'dashed', 'text'];
 export type ButtonType = typeof ButtonTypes[number];
@@ -15,7 +16,7 @@ export interface ButtonProps {
   /**
    * Button comes in 4 styles that can be selected: default, primary, dashed, or text
    */
-  type?: ButtonType;
+  variant?: ButtonType;
   /**
    * An optional button image can be provided
    */
@@ -74,7 +75,7 @@ const RootButton = styled('button') <ButtonHTMLAttributes<HTMLButtonElement>> (
 
 const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, ref) => {
   const {
-    type,
+    variant,
     icon,
     label,
     size = 'medium',
@@ -97,12 +98,11 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
   }
 
   const generalClasses = classNames(className, {
-    [`bt-btn`]: true
+    [`${prefix}-btn`]: true
   });
 
   const buttonNode = (
     <RootButton
-        // className={classes}
         onClick={handleClick}
         className={generalClasses}
       > 
