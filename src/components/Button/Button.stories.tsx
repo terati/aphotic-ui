@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
 import { Button } from '.';
@@ -8,6 +8,7 @@ export default {
   component: Button,
   argTypes: {
     backgroundColor: { control: 'color' },
+    loading: { control: 'boolean' },
   },
 } as ComponentMeta<typeof Button>;
 

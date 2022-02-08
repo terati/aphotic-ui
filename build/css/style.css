@@ -36,9 +36,10 @@ html[theme=dark] {
   --primary-contrastText: rgba(0, 0, 0, 0.87);
 }
 
-.aph-btn {
+.aph--btn {
   background-color: var(--primary-main);
   color: var(--primary-contrastText);
+  border-radius: 10px;
   border: none;
   padding: 15px 32px;
   text-align: center;
@@ -52,6 +53,25 @@ html[theme=dark] {
   justify-content: space-between;
   cursor: pointer;
 }
-.aph-btn:hover {
+.aph--btn:hover {
   background-color: var(--primary-light);
+}
+
+.aph--btn--text {
+  background-color: var(rgba(0, 0, 0, 0));
+  color: var(#000);
+}
+
+.aph--btn--danger {
+  background-color: var(rgba(0, 0, 0, 0));
+  color: var(--error-main);
+}
+
+.aph--spinner {
+  animation: rotation 1s linear infinite;
+}
+@keyframes rotation {
+  100% {
+    transform: rotate(360deg);
+  }
 }

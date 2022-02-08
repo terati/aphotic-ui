@@ -5,8 +5,13 @@ import classNames from 'classnames';
 import { ButtonHTMLAttributes } from 'react';
 import { prefix } from '../../config';
 
-const ButtonTypes = ['default', 'primary', 'dashed', 'text'];
-export type ButtonType = typeof ButtonTypes[number];
+type ButtonTypes = 
+| 'default'
+| 'primary'
+| 'outlined'
+| 'dashed'
+| 'danger'
+| 'text';
 
 export interface ButtonProps {
   /**
@@ -16,7 +21,7 @@ export interface ButtonProps {
   /**
    * Button comes in 4 styles that can be selected: default, primary, dashed, or text
    */
-  variant?: ButtonType;
+  variant?: ButtonTypes;
   /**
    * An optional button image can be provided
    */
@@ -54,7 +59,6 @@ export interface ButtonProps {
 function isReactFragment(node: React.ReactNode) {
   return React.isValidElement(node) && node.type == React.Fragment;
 }
-
 
 const RootButton = styled('button') <ButtonHTMLAttributes<HTMLButtonElement>> (
   {
@@ -98,7 +102,12 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
   }
 
   const generalClasses = classNames(className, {
-    [`${prefix}-btn`]: true
+    [`${prefix}--btn`]: true,
+    [`${prefix}--btn--outlined`]: (variant === 'outlined'),
+    [`${prefix}--btn--text`]: (variant === 'text'),
+    [`${prefix}--btn--loading`]: loading,
+    [`${prefix}--btn--danger`]: (variant === 'danger'),
+
   });
 
   const buttonNode = (
