@@ -16,6 +16,6 @@ npm i aphotic-ui
 | Loaders     | :heavy_check_mark: |
 | Notification|                    |
 | Search      |                    |
-| Slider      | :white_check_mark: |
-| Toggle      | :white_check_mark: |
+| Slider      | :heavy_minus_sign: |
+| Toggle      | :heavy_minus_sign: |
 | TreeView    |                    |
