@@ -1,5 +1,5 @@
 :root {
-  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  font-family: Roboto, Arial, Helvetica, sans-serif;
 }
 
 :root, html[theme=light] {
@@ -39,9 +39,9 @@ html[theme=dark] {
 .aph--btn {
   background-color: var(--primary-main);
   color: var(--primary-contrastText);
-  border-radius: 10px;
   border: none;
-  padding: 15px 32px;
+  border-radius: 4px;
+  padding: 6px 16px;
   text-align: center;
   display: inline-block;
   font-size: 16px;
@@ -57,13 +57,76 @@ html[theme=dark] {
   background-color: var(--primary-light);
 }
 
-.aph--btn--text {
-  background-color: var(rgba(0, 0, 0, 0));
-  color: var(#000);
+.aph--btn--outlined {
+  background-color: var(--primary-main);
+  color: var(--primary-contrastText);
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--primary-main);
+  border: solid 1px;
+  border-color: var(--primary-light);
+}
+.aph--btn--outlined:hover {
+  background-color: var(--primary-light);
+}
+.aph--btn--outlined:hover {
+  border: solid 1px var(--primary-main);
+  background-color: var(--primary-main);
+  color: var(--primary-contrastText);
 }
 
-.aph--btn--danger {
-  background-color: var(rgba(0, 0, 0, 0));
+.aph--btn--ghost {
+  background-color: var(--primary-main);
+  color: var(--primary-contrastText);
+  background-color: transparent;
+  color: var(--primary-main);
+}
+.aph--btn--ghost:hover {
+  background-color: var(--primary-light);
+}
+.aph--btn--ghost:hover {
+  background-color: transparent;
+  border: none;
+  color: var(--primary-main);
+}
+
+.aph--btn--contained--danger {
+  background-color: var(--error-main);
+  color: var(--error-contrastText);
+  border: none;
+}
+.aph--btn--contained--danger:hover {
+  background-color: var(--error-light);
+}
+
+.aph--btn--outlined--danger {
+  background-color: var(--error-main);
+  color: var(--error-contrastText);
+  background-color: rgba(0, 0, 0, 0);
+  color: var(--error-main);
+  border: solid 1px;
+  border-color: var(--error-light);
+}
+.aph--btn--outlined--danger:hover {
+  background-color: var(--error-light);
+}
+.aph--btn--outlined--danger:hover {
+  border: solid 1px var(--error-main);
+  background-color: var(--error-main);
+  color: var(--error-contrastText);
+}
+
+.aph--btn--ghost--danger {
+  background-color: var(--error-main);
+  color: var(--error-contrastText);
+  background-color: transparent;
+  color: var(--error-main);
+}
+.aph--btn--ghost--danger:hover {
+  background-color: var(--error-light);
+}
+.aph--btn--ghost--danger:hover {
+  background-color: transparent;
+  border: none;
   color: var(--error-main);
 }
 

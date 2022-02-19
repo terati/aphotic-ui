@@ -1,21 +1,46 @@
 @use '../../config' as *;
 @use '../theme' as *;
 
-@mixin base-button ($bg-color, $color){
+$transparent: rgba(0,0,0,0);
+
+@mixin base-button ($bg-color, $color, $hover-color, $variant){
   background-color: var($bg-color);
   color: var($color);
+  &:hover {
+    background-color: var($hover-color);
+  };
+  @if $variant == contained {
+    border: none;
+  } @else if $variant == outlined {
+    background-color: $transparent;
+    color: var($bg-color);
+    border: solid 1px;
+    border-color: var($hover-color);
+    &:hover {
+      border: solid 1px var($bg-color);
+      background-color: var($bg-color);
+      color: var($color);
+    }
+  } @else if $variant == ghost {
+    background-color: transparent;
+    color: var($bg-color);
+    &:hover {
+      background-color: transparent;
+      border: none;
+      color: var($bg-color);
+    }
+  }
 }
-
-$transparent: rgba(0,0,0,0);
 
 .#{$prefix}--btn {
   @include base-button(
     --primary-main,
-    --primary-contrastText 
+    --primary-contrastText,
+    --primary-light,
+    contained,
   );
-  border-radius: 10px;
-  border: none;
-  padding: 15px 32px;
+  border-radius: 4px;
+  padding: 6px 16px;
   text-align: center;
   display: inline-block;
   font-size: 16px;
@@ -27,23 +52,50 @@ $transparent: rgba(0,0,0,0);
   align-items: center;
   justify-content: space-between;
   cursor: pointer;
-
-  &:hover {
-    background-color: var(--primary-light);
-  }
 }
 
-.#{$prefix}--btn--text {
+.#{$prefix}--btn--outlined {
   @include base-button(
-    $transparent,
-    #000,
+    --primary-main,
+    --primary-contrastText,
+    --primary-light,
+    outlined,
   );
 }
 
-.#{$prefix}--btn--danger {
+.#{$prefix}--btn--ghost {
   @include base-button(
-    $transparent,
+    --primary-main,
+    --primary-contrastText,
+    --primary-light,
+    ghost,
+  );
+}
+
+.#{$prefix}--btn--contained--danger {
+  @include base-button(
     --error-main,
+    --error-contrastText,
+    --error-light,
+    contained,
+  );
+}
+
+.#{$prefix}--btn--outlined--danger {
+  @include base-button(
+    --error-main,
+    --error-contrastText,
+    --error-light,
+    outlined,
+  );
+}
+
+.#{$prefix}--btn--ghost--danger {
+  @include base-button(
+    --error-main,
+    --error-contrastText,
+    --error-light,
+    ghost,
   );
 }
 

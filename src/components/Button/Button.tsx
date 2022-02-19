@@ -6,12 +6,12 @@ import { ButtonHTMLAttributes } from 'react';
 import { prefix } from '../../config';
 
 type ButtonTypes = 
-| 'default'
-| 'primary'
+| 'contained'
 | 'outlined'
-| 'dashed'
-| 'danger'
-| 'text';
+| 'ghost'
+| 'contained--danger'
+| 'outlined--danger'
+| 'ghost--danger';
 
 export interface ButtonProps {
   /**
@@ -60,26 +60,9 @@ function isReactFragment(node: React.ReactNode) {
   return React.isValidElement(node) && node.type == React.Fragment;
 }
 
-const RootButton = styled('button') <ButtonHTMLAttributes<HTMLButtonElement>> (
-  {
-    // backgroundColor: 'black',
-    // // background: 'inherit',
-    // border: 1,
-    // borderRadius: '10px',
-    // color: 'white',
-    // cursor: 'pointer',
-    // fontFamily: 'inherit',
-    // fontSize: 'inherit',
-    // margin: 0,
-    // outline: 1,
-    // padding: 10,
-    // textAlign: 'inherit'
-  }
-)
-
 const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, ref) => {
   const {
-    variant,
+    variant = 'contained',
     icon,
     label,
     size = 'medium',
@@ -87,6 +70,7 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
     block = false,
     loading = false,
     children,
+    styles, 
     ...rest
   } = props;
 
@@ -104,11 +88,18 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
   const generalClasses = classNames(className, {
     [`${prefix}--btn`]: true,
     [`${prefix}--btn--outlined`]: (variant === 'outlined'),
-    [`${prefix}--btn--text`]: (variant === 'text'),
-    [`${prefix}--btn--loading`]: loading,
-    [`${prefix}--btn--danger`]: (variant === 'danger'),
+    [`${prefix}--btn--ghost`]: (variant === 'ghost'),
+    [`${prefix}--btn--contained--danger`]: (variant === 'contained--danger'),
+    [`${prefix}--btn--outlined--danger`]: (variant === 'outlined--danger'),
+    [`${prefix}--btn--ghost--danger`]: (variant === 'ghost--danger'),
 
   });
+
+  const RootButton = styled('button') <ButtonHTMLAttributes<HTMLButtonElement>> (
+    {
+      ...styles
+    }
+  )
 
   const buttonNode = (
     <RootButton
