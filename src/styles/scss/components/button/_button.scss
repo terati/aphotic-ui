@@ -99,4 +99,18 @@ $transparent: rgba(0,0,0,0);
   );
 }
 
+.#{$prefix}--btn--small {
+  padding: 4px 5px;
+}
+
+.#{$prefix}--btn--medium {
+  padding: 6px 16px;
+}
+
+.#{$prefix}--btn--large {
+  padding: 8px 22px;
+}
+
+
+
 

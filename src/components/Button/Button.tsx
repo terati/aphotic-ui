@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from '@emotion/styled';
 import classNames from 'classnames';
+import Spinner from '../Loaders/Spinner/Spinner';
 
 import { ButtonHTMLAttributes } from 'react';
 import { prefix } from '../../config';
@@ -14,46 +15,40 @@ type ButtonTypes =
 | 'ghost--danger';
 
 export interface ButtonProps {
-  /**
-   * Button content label
-   */
+  /** Button content label */
   label?: string;
-  /**
-   * Button comes in 4 styles that can be selected: default, primary, dashed, or text
-   */
+  
+  /** Button comes in 4 styles that can be selected: default, primary, dashed, or text */
   variant?: ButtonTypes;
-  /**
-   * An optional button image can be provided
-   */
+  
+  /** An optional button image can be provided */
   icon?: React.ReactNode;
-  /** 
-   * Button provided sizes in the following 3 size.
-   */
+  
+  /** Button provided sizes in the following 3 size */
   size?: 'small' | 'medium' | 'large';
-  /**
-   * Optional class label
-   */
+  
+  /** Optional class label */
   className?: string;
-  /**
-   * determines if the button takes the entirety of parent object
-   */
+  
+  /** Determines if the button takes the entirety of parent object */
   block?: boolean;
-  /**
-   * Button can enter loading state
-   */
+  
+  /** Option to disable */
+  isDisabled?: boolean;
+
+  /** Button can enter loading state */
   loading?: boolean;
-  /**
-   * Inherited clicking
-   */
+
+  loadingPosition?: 'start' | 'middle' | 'end';
+  
+  /** Inherited clicking */
   onClick?: React.MouseEventHandler<HTMLElement>;
-  /**
-   * Option to disable
-   */
-  disabled?: boolean;
   
   children?: React.ReactNode;
 
   styles?: {};
+
+  tabIndex?: number;
 }
 
 function isReactFragment(node: React.ReactNode) {
@@ -62,6 +57,7 @@ function isReactFragment(node: React.ReactNode) {
 
 const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (props, ref) => {
   const {
+    isDisabled = false, 
     variant = 'contained',
     icon,
     label,
@@ -69,8 +65,10 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
     className,
     block = false,
     loading = false,
+    loadingPosition = 'middle',
     children,
-    styles, 
+    styles,
+    tabIndex = 0,
     ...rest
   } = props;
 
@@ -93,6 +91,10 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
     [`${prefix}--btn--outlined--danger`]: (variant === 'outlined--danger'),
     [`${prefix}--btn--ghost--danger`]: (variant === 'ghost--danger'),
 
+    [`${prefix}--btn--small`]: (size === 'small'),
+    [`${prefix}--btn--medium`]: (size === 'medium'),
+    [`${prefix}--btn--large`]: (size === 'large')
+
   });
 
   const RootButton = styled('button') <ButtonHTMLAttributes<HTMLButtonElement>> (
@@ -103,10 +105,15 @@ const InternalButton: React.ForwardRefRenderFunction<unknown, ButtonProps> = (pr
 
   const buttonNode = (
     <RootButton
-        onClick={handleClick}
-        className={generalClasses}
-      > 
-      {label} 
+      disabled={isDisabled}
+      onClick={handleClick}
+      className={generalClasses}
+      tabIndex={tabIndex}
+      {...rest}
+    > 
+      { (loading && (loadingPosition == 'start')) && <Spinner size={'small'} /> }
+      { children } 
+      { (loading && (loadingPosition == 'end')) && <Spinner size={'small'}/> }
         
     </RootButton>
   )

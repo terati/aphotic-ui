@@ -1,0 +1,84 @@
+@use '../../config' as *;
+@use '../theme' as *;
+
+
+.#{$prefix}--switch {
+  position: relative;
+  display: inline-block;
+  width: 30px;
+  height: 17px;
+  input {
+    opacity: 0;
+    height: 0;
+  }
+  .#{$prefix}--switch--slider {
+    display: block;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(92, 92, 92);
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+  
+  .#{$prefix}--switch--slider:before {
+    position: absolute;
+    content: "";
+    height: 13px;
+    width: 13px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+  }
+}
+
+
+.#{$prefix}--switch input:checked + .#{$prefix}--switch--slider {
+  background-color: #2196F3;
+}
+
+.#{$prefix}--switch input:focus + .#{$prefix}--switch--slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+.#{$prefix}--switch input:checked + .#{$prefix}--switch--slider:before {
+  -webkit-transform: translateX(13px);
+  -ms-transform: translateX(13px);
+  transform: translateX(13px);
+}
+
+/* Rounded sliders */
+.#{$prefix}--switch--round {
+  border-radius: 17px;
+}
+
+.#{$prefix}--switch--round:before {
+  border-radius: 50%;
+}
+
+.#{$prefix}--switch--wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.#{$prefix}--switch--wrapper--inner--div {
+  display: flex;
+  min-width: 30px;
+}
+
+.#{$prefix}--switch--label {
+  padding: 0 10px; 
+}
+
+
+
+
+
+
+

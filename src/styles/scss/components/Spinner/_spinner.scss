@@ -2,6 +2,7 @@
 @use '../theme' as *;
 
 .#{$prefix}--spinner {
+  padding: 0 5px; 
   @keyframes rotation {
     100% {
       transform: rotate(360deg);

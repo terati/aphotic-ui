@@ -1,0 +1,41 @@
+@use '../../config' as *;
+@use '../theme' as *;
+
+
+.#{$prefix}--checkbox {
+  appearance: none;
+  margin: 0;
+  width: 1.15em;
+  height: 1.15em;
+  border: 0.15em solid var(--primary-main);
+  border-radius: 0.15em;
+
+  display: grid;
+  place-content: center;
+
+  font-family: inherit;
+  padding: 0em;
+}
+
+.#{$prefix}--checkbox::before {
+  content: "";
+  width: 0.95em;
+  height: 0.95em;
+  transform: scale(0);
+  transform-origin: center;
+  transition: 120ms transform ease-in-out;
+  border-radius: 0.15em;
+  background-color: var(--primary-main);
+}
+
+.#{$prefix}--checkbox:checked::before {
+  transform: scale(1);
+}
+
+
+.#{$prefix}--label--checkbox {
+  display: grid;
+  grid-template-columns: 1.5em fit-content(2ch);
+  // align-content: center;
+  align-items: center;
+}
