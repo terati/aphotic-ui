@@ -8,7 +8,7 @@
   border-radius: 10px;
   min-width: 100px;
   padding: 10px;
-  &:after {
+  &:before {
     content:'\A';
     position: absolute;
     background: rgb(255, 0, 0);
@@ -18,6 +18,17 @@
     left: 0;
     width: 70%;
   }
+}
+
+.#{$prefix}--slider--thumb {
+  position: absolute;
+  background-color: aqua;
+  width: 20px;
+  height: 20px;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  z-index: 10;
 }
 
 

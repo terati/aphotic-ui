@@ -193,7 +193,7 @@ html[theme=dark] {
   min-width: 100px;
   padding: 10px;
 }
-.aph--slider:after {
+.aph--slider:before {
   content: "\a";
   position: absolute;
   background: red;
@@ -202,6 +202,17 @@ html[theme=dark] {
   bottom: 0;
   left: 0;
   width: 70%;
+}
+
+.aph--slider--thumb {
+  position: absolute;
+  background-color: aqua;
+  width: 20px;
+  height: 20px;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  z-index: 10;
 }
 
 .aph--switch {

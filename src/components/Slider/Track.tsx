@@ -8,43 +8,48 @@ export interface TrackProps {
   offset?: number;
   size?: number;
   color?: string;
+  children?: React.ReactNode;
   min: number;
   max: number;
-  children: React.ReactNode;
   // onChange(value: number): void;
+  onClick?(event?: React.MouseEvent<HTMLDivElement>): void;
+  onMouseDown?(event?: React.MouseEvent<HTMLDivElement>): void;
   onMouseEnter?(event?: React.MouseEvent<HTMLDivElement>): void;
   onMouseLeave?(event?: React.MouseEvent<HTMLDivElement>): void;
+  onTouchStart?(event?: React.TouchEvent<HTMLDivElement>): void;
+  onTouchMove?(event?: React.TouchEvent<HTMLDivElement>): void;
   disabled: boolean;
 }
 
-function Track({
-  filled,
-  offset,
-  size,
-  color,
-  min,
-  max,
-  children,
-  onMouseEnter,
-  onMouseLeave,
-  disabled,
-  ...others
-}: TrackProps) {
+const Track = React.forwardRef<HTMLDivElement, TrackProps>((props, ref) => {
+  const {
+    children,
+    onClick,
+    onMouseDown,
+    onMouseLeave, 
+    onMouseEnter,
+    onTouchStart,
+    onTouchMove
+  } = props;
 
   const TrackClasses = classNames( {
     [`${prefix}--slider`]: true,
   });
 
   return (
-    <div 
+    <div
       className={TrackClasses}
-      onMouseLeave={onMouseLeave} 
-      onMouseEnter={onMouseEnter}> 
-
-      {children}
-
+      onClick={onClick}
+      onMouseDown={onMouseDown}
+      onMouseLeave={onMouseLeave}
+      onMouseEnter={onMouseEnter}
+      onTouchStart={onTouchStart}
+      onTouchMove={onTouchMove}
+      ref={ref}
+    > 
+      { children }
     </div>
   )
-}
+})
 
 export default Track;
